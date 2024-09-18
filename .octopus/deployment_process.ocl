@@ -1,0 +1,54 @@
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        is_required = true
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptFileName = "#{OctopusPrintVariables}"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_id = "GitCredentials-1"
+            git_credential_type = "Library"
+            repository_uri = "#{Catalog}"
+        }
+    }
+}
+
+step "iis-apppool-advanced-settings2" {
+    name = "IIS AppPool - Advanced Settings2"
+    properties = {
+        Octopus.Action.TargetRoles = "test"
+    }
+
+    action {
+        properties = {
+            AppPool.Cpu.Limit = "0"
+            AppPool.Cpu.LimitAction = "0"
+            AppPool.Failure.RapidFailProtection = "True"
+            AppPool.ProcessModel.IdleTimeout = "00:20:00"
+            AppPool.ProcessModel.IdleTimeoutAction = "0"
+            AppPool.ProcessModel.LoadUserProfile = "False"
+            AppPool.ProcessModel.MaxProcesses = "1"
+            AppPool.ProcessModel.PingEnabled = "True"
+            AppPool.ProcessModel.PingInterval = "00:00:30"
+            AppPool.ProcessModel.PingResponseTime = "00:01:30"
+            AppPool.ProcessModel.ShutdownTimeLimit = "00:01:30"
+            AppPool.ProcessModel.StartupTimeLimit = "00:01:30"
+            AppPool.QueueLength = "1000"
+            AppPool.Recycling.PeriodicRestart.PrivateMemory = "0"
+            AppPool.Recycling.PeriodicRestart.Time = "29:00:00"
+            AppPool.Recycling.PeriodicRestart.VirtualMemory = "0"
+            AppPool.StartMode = "0"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Template.Id = "ActionTemplates-41"
+            Octopus.Action.Template.Version = "1"
+        }
+        worker_pool_variable = ""
+    }
+}

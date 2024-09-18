@@ -1,0 +1,7 @@
+variable "OctopusPrintEvaluatedVariables" {
+    value "true" {}
+}
+
+variable "OctopusPrintVariables" {
+    value "true" {}
+}
