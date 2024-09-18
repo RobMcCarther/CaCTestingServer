@@ -1,10 +1,10 @@
-step "iis-apppool-advanced-settings2" {
+step "run-a-script" {
     name = "IIS AppPool - Advanced Settings2"
     properties = {
         Octopus.Action.TargetRoles = "test"
     }
 
-    action {
+    action "iis-apppool-advanced-settings2" {
         properties = {
             AppPool.Cpu.Limit = "0"
             AppPool.Cpu.LimitAction = "0"
@@ -31,14 +31,15 @@ step "iis-apppool-advanced-settings2" {
     }
 }
 
-step "run-a-script" {
-    name = "Run a Script"
+step "run-a-script-1" {
+    name = "Run a Script 1"
     properties = {
         Octopus.Action.TargetRoles = "test"
     }
 
-    action {
+    action "run-a-script" {
         action_type = "Octopus.Script"
+        name = "Run a Script"
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = "Write-Host \"Test\""
