@@ -1,25 +1,3 @@
-step "run-a-script" {
-    name = "Run a Script"
-
-    action {
-        action_type = "Octopus.Script"
-        is_required = true
-        properties = {
-            Octopus.Action.GitRepository.Source = "External"
-            Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptFileName = "#{OctopusPrintVariables}"
-            Octopus.Action.Script.ScriptSource = "GitRepository"
-        }
-
-        git_dependencies {
-            default_branch = "main"
-            git_credential_id = "GitCredentials-1"
-            git_credential_type = "Library"
-            repository_uri = "#{Catalog}"
-        }
-    }
-}
-
 step "iis-apppool-advanced-settings2" {
     name = "IIS AppPool - Advanced Settings2"
     properties = {
